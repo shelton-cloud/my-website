@@ -1,0 +1,37 @@
+# LEARNING: '3.8' is a modern, stable version for compose files.
+
+version: '3.8'
+
+# LEARNING: This is where we define all the "services" (i.e., containers) for our application. We only have one.
+
+services:
+
+  # LEARNING: We can name our service anything. 'web' is common.
+
+  web:
+    # LEARNING: 'build: .' tells Docker to build the image
+    # using the 'Dockerfile' in the current directory.
+    #
+    # NOTE: For Swarm, you'll often "pre-build" this image,
+    # push it to a private registry (like Docker Hub), and
+    # replace this 'build' line with:
+    # image: your-dockerhub-username/my-website:latest
+    build: .
+
+    # LEARNING: This maps port 8080 on your *host* machine
+    # to port 80 inside the *container*. When you deploy,
+    # you might manage this differently with Swarm's ingress
+    # network, but this is great for testing.
+    ports:
+      - "8080:80"
+
+    # LEARNING: This 'deploy' key is used by Docker Swarm.
+    deploy:
+      # LEARNING: We'll start with one copy of our site.
+      # Swarm will make sure one is always running.
+      replicas: 1
+
+      # LEARNING: Tells Swarm what to do if the container
+      # crashes. 'on-failure' is a safe bet.
+      restart_policy:
+        condition: on-failure
