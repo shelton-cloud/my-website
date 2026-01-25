@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-itav-start: #4270d8;
+  --color-itav-mid: #955ac9;
+  --color-itav-end: #f48c3b;
+
+  --background-image-gradient-itav: linear-gradient(to right, var(--color-itav-start), var(--color-itav-mid), var(--color-itav-end));
+}
+
+@layer components {
+  .text-gradient-itav {
+    background-image: var(--background-image-gradient-itav);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-gray-100 text-gray-800 antialiased;
+  }
+}
