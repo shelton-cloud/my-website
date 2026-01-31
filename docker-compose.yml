@@ -7,5 +7,15 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.my-website.rule=Host(`my-website.local`)"
+      - "traefik.http.services.my-website.loadbalancer.server.port=3000"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
