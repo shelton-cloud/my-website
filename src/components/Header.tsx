@@ -11,7 +11,9 @@ export function Header() {
                 </h1>
                 <div className="space-x-4">
                     <Link href="#about" className="text-gray-600 hover:text-itav-start transition-colors">About</Link>
+                    <Link href="#skills" className="text-gray-600 hover:text-itav-start transition-colors">Skills</Link>
                     <Link href="#experience" className="text-gray-600 hover:text-itav-start transition-colors">Experience</Link>
+                    <Link href="#education" className="text-gray-600 hover:text-itav-start transition-colors">Education</Link>
                     <Link href="#projects" className="text-gray-600 hover:text-itav-start transition-colors">Projects</Link>
                     <Link href="#contact" className="text-gray-600 hover:text-itav-start transition-colors">Contact</Link>
                 </div>
