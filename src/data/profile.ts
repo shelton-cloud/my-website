@@ -7,9 +7,21 @@ export const profile = {
         location: "Los Angeles, CA 90064"
     },
     bio: [
-        "Resourceful and highly skilled Lead IT/AV professional with 12+ years of experience at Riot Games. Expert in global infrastructure management, broadcast engineering, and strategic roadmap development.",
-        "Proven track record of leading high-stakes technical operations for global events and spearheading large-scale office expansions through standardized hardware parity and automated asset management."
+        "I'm originally from Houston, TX and moved to Los Angeles to pursue music—playing guitar, bass, and drums in touring bands across the country. While the rockstar life was a thrill, I found my long-term rhythm at Riot Games, where I've spent the last 12+ years blending my technical skills with my passion for creating amazing experiences.",
+        "Today, I'm a Lead IT/AV professional expert in global infrastructure and broadcast engineering. I love solving complex technical puzzles, enabling global teams to collaborate seamlessly, and building systems that just work."
     ],
+    personal: {
+        journey: "From Houston stages to LA control rooms, my journey has been about finding the perfect mix of creativity and technology.",
+        family: "Happily married for 4 years (together for 10) and the proud father of a 3.5-year-old.",
+        pets: "Ripley: Our three-legged rescue dog, named after the legendary Ellen Ripley from Alien(s).",
+        music: "Former touring musician. I still play guitar, bass, and drums, and writing songs remains my primary creative outlet.",
+        hobbies: [
+            "Home Lab Enthusiast",
+            "Watching Movies/TV (huge Alien fan)",
+            "Gaming (League & CoD)",
+            "Combat Sports"
+        ]
+    },
     experience: [
         {
             company: "Riot Games",
