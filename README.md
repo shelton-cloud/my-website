@@ -1,78 +1,83 @@
-# Personal Portfolio Website
+# Bryan Shelton - Personal Portfolio
 
-A clean, modern, and responsive personal portfolio website built with [Next.js 16](https://nextjs.org). This project is designed to showcase your professional profile, experience, and projects in a sleek, single-page layout.
+A professional personal portfolio website showcasing expertise in IT/AV engineering, broadcast systems, and technical leadership. Built with focus on performance, aesthetics, and a clean user experience.
 
 ## ✨ Features
 
-- **About Section**: Introduction and bio.
-- **Experience Timeline**: Highlight your professional career path.
-- **Projects Showcase**: Display your key projects with descriptions.
-- **Responsive Design**: Fully responsive layout built with Tailwind CSS v4.
-- **Easy Customization**: All content is driven by a single data file.
+- **About & Bio**: Detailed professional background (Riot Games, Music).
+- **Professional Timeline**: Comprehensive experience history from IT Specialist to Lead AV Engineer.
+- **Interactive Music Player**: Custom-built audio integration to showcase musical projects.
+- **Dynamic Skills & Certifications**: Categorized technical expertise and professional certifications.
+- **Analytics Integrated**: Built-in Vercel Analytics for tracking engagement.
+- **Responsive Design**: Fully responsive layout optimized for all devices using Tailwind CSS v4.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 16 (App Router)
-- **Library**: React 19
-- **Styling**: Tailwind CSS v4
+- **Framework**: [Next.js 16](https://nextjs.org) (App Router)
+- **Library**: [React 19](https://react.dev)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com)
+- **Analytics**: [@vercel/analytics](https://vercel.com/analytics)
 - **Language**: TypeScript
-- **Containerization**: Docker
+- **Containerization**: Docker & Docker Compose
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18 or higher (v20 recommended)
-- npm, yarn, or pnpm
+- Node.js 18 or higher (v20+ recommended)
+- npm or yarn
 
 ### Installation
 
-1.  Clone the repository:
+1. **Clone the repository**:
+
     ```bash
     git clone https://github.com/yourusername/my-website.git
     cd my-website
     ```
 
-2.  Install dependencies:
+2. **Install dependencies**:
+
     ```bash
     npm install
-    # or
-    yarn install
     ```
 
-3.  Run the development server:
+3. **Run the development server**:
+
     ```bash
     npm run dev
     ```
 
-4.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **View the app**:
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📝 Customization
 
-You can easily update the content of the website without touching the component code.
+The portfolio is designed to be easily updated by modifying a single data file.
 
-1.  Navigate to `src/data/profile.ts`.
-2.  Update the `profile` object with your own information:
-    - Name, Role, Bio
-    - Experience entries
-    - Project details
-    - Social links
+1. Open `src/data/profile.ts`.
+2. Update the `profile` object with your details:
+    - **name**, **title**, **contact**
+    - **bio**, **personal** (journey, family, pets, etc.)
+    - **experience** (array of roles and responsibilities)
+    - **skills** (categorized lists)
+    - **projects** and **social** links
 
-The UI will automatically reflect your changes.
+The UI components (Header, About, Experience, etc.) will automatically update based on this data.
 
-## 🐳 Deployment with Docker
+## 🐳 Deployment
 
-This project includes a `Dockerfile` and `docker-compose.yml` for easy deployment.
+This project is Docker-ready for consistent deployment across environments.
 
-### Build and Run
+### Using Docker Compose
 
 ```bash
 docker-compose up -d --build
 ```
 
-The application will be available at `http://localhost:3000`.
+The application will be accessible at `http://localhost:3000`.
 
-### Stop the Container
+### Stopping the service
 
 ```bash
 docker-compose down
