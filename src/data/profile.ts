@@ -112,8 +112,35 @@ export const profile = {
             description: "I write, record, and mix my own song demos, playing all the instruments (guitar, bass, drums)."
         }
     ],
+    vibeProjects: [
+        {
+            title: "Retro TV Pi",
+            subtitle: "Physical Appliance Mode",
+            description: "A Raspberry Pi 3B+ 'Cable Box' experience booting into a 5-channel simulated broadcast with CRT scanline effects and physical GPIO button support.",
+            tech: ["React", "FastAPI", "FFmpeg", "GPIO"]
+        },
+        {
+            title: "Family Prepper Disk",
+            subtitle: "Offline Knowledge Base",
+            description: "A rugged Raspberry Pi deployment providing a local WiFi captive portal and Kiwix-powered offline Wikipedia for emergency scenarios.",
+            tech: ["Next.js", "Nginx", "hostapd", "Docker"]
+        },
+        {
+            title: "HOA Notion Agents",
+            subtitle: "AI-Powered Governance",
+            description: "A fleet of specialized AI agents (Forensic Auditor, Correspondence Hawk) designed to parse complex HOA documents and automate board communications.",
+            tech: ["Gemini AI", "Notion API", "Python"]
+        },
+        {
+            title: "Tournament Scoreboard",
+            subtitle: "Event Infrastructure",
+            description: "A high-performance, real-time scoreboard system built for rapid deployment at gaming events.",
+            tech: ["Vite", "Tailwind CSS", "TypeScript"]
+        }
+    ],
     social: [
         { name: "LinkedIn", url: "https://www.linkedin.com/in/bryan-shelton-b3a9241b/" },
+        { name: "GitHub", url: "https://github.com/shelton-cloud" },
         { name: "SoundCloud", url: "https://soundcloud.com/bryanshelton" },
         { name: "Email", url: "mailto:bryan.shelton@gmail.com" }
     ]

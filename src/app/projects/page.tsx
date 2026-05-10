@@ -1,24 +1,44 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { VibeCodingSection } from "@/components/VibeCodingSection";
 import { PersonalSection } from "@/components/PersonalSection";
 import MusicPlayerWrapper from '@/components/MusicPlayerWrapper';
 
+export const metadata: Metadata = {
+    title: "Projects",
+    description: "A showcase of technical projects and creative music production by Bryan Shelton.",
+};
+
 export default function ProjectsPage() {
     return (
-        <div className="min-h-screen flex flex-col bg-[#fcfcfc] text-gray-900 font-sans">
+        <div className="min-h-screen flex flex-col bg-surface text-on-surface">
             <Header />
-            <main className="flex-grow container mx-auto px-4 md:px-8 py-8">
-                <h1 className="text-4xl font-bold mb-8 text-center md:text-left">Projects</h1>
-                <ProjectsSection />
+            <main className="flex-grow container-max py-20">
+                <div className="max-w-4xl">
+                    <div className="mb-4">
+                        <span className="label-sm text-secondary tracking-[0.3em] font-bold">Portfolio & Creative</span>
+                    </div>
+                    <h1 className="headline-xl mb-20 uppercase tracking-tighter">Projects</h1>
+                    
+                    <div className="space-y-20">
+                        <ProjectsSection />
 
-                <div className="my-12 max-w-2xl mx-auto md:mx-0">
-                    <h2 className="text-3xl font-bold mb-6 text-center md:text-left">Music</h2>
-                    <MusicPlayerWrapper />
+                        <VibeCodingSection />
+
+                        <div className="scroll-mt-24">
+                            <div className="flex items-center gap-6 mb-10">
+                                <h2 className="headline-lg uppercase tracking-tighter">Music Production</h2>
+                                <div className="flex-grow h-px bg-outline/10"></div>
+                            </div>
+                            <MusicPlayerWrapper />
+                        </div>
+
+                        <PersonalSection />
+                    </div>
                 </div>
-
-                <PersonalSection />
             </main>
             <Footer />
         </div>
