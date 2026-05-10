@@ -10,14 +10,14 @@ export function Footer() {
             <div className="container-max">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
                     {/* Brand Section */}
-                    <div className="md:col-span-5">
+                    <div className="md:col-span-5 min-w-0">
                         <Link href="/" className="flex items-center gap-3 mb-8">
                             <div className="w-1 h-4 bg-primary"></div>
                             <span className="font-display font-bold text-xl tracking-tighter uppercase">
                                 {profile.name}
                             </span>
                         </Link>
-                        <p className="body-md text-on-surface-variant max-w-sm leading-relaxed">
+                        <p className="body-md text-on-surface-variant max-w-md leading-relaxed">
                             {profile.personal.journey}
                         </p>
                     </div>
