@@ -62,6 +62,7 @@ export default function RootLayout({
       <body className="bg-surface text-on-surface">
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
