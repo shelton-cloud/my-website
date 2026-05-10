@@ -13,7 +13,7 @@ export function EducationSection() {
                 {/* Certifications Column */}
                 <div className="space-y-6">
                     <h3 className="label-sm text-outline-variant flex items-center gap-3 tracking-widest font-bold">
-                         <div className="w-1 h-3 bg-primary"></div>
+                         <div className="w-1 h-3 bg-tertiary"></div>
                          Certifications
                     </h3>
                     <ul className="space-y-3">

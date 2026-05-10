@@ -23,7 +23,7 @@ export function ExperienceSection() {
                                     <h3 className="headline-md text-on-surface group-hover:text-primary transition-colors duration-300">
                                         {job.role}
                                     </h3>
-                                    <p className="body-md text-primary font-semibold tracking-wide mt-1 uppercase">{job.company}</p>
+                                    <p className="body-md text-secondary font-semibold tracking-wide mt-1 uppercase">{job.company}</p>
                                 </div>
                                 <div className="flex flex-col items-start md:items-end gap-2">
                                     <span className="label-sm border border-outline/20 px-3 py-1 bg-surface-container-highest rounded-sm">

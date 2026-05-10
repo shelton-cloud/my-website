@@ -117,18 +117,18 @@ export default function MusicPlayer() {
                                 <h3 className="headline-md text-on-surface uppercase tracking-tight">{currentTrack.title}</h3>
                                 {isPlaying && (
                                     <div className="flex items-end gap-0.5 h-6 pb-1">
-                                        <div className="visualizer-bar" style={{ animationDelay: '0s' }}></div>
-                                        <div className="visualizer-bar" style={{ animationDelay: '0.2s' }}></div>
-                                        <div className="visualizer-bar" style={{ animationDelay: '0.4s' }}></div>
-                                        <div className="visualizer-bar" style={{ animationDelay: '0.1s' }}></div>
+                                        <div className="visualizer-bar bg-secondary" style={{ animationDelay: '0s' }}></div>
+                                        <div className="visualizer-bar bg-tertiary" style={{ animationDelay: '0.2s' }}></div>
+                                        <div className="visualizer-bar bg-secondary" style={{ animationDelay: '0.4s' }}></div>
+                                        <div className="visualizer-bar bg-tertiary" style={{ animationDelay: '0.1s' }}></div>
                                     </div>
                                 )}
                             </div>
-                            <span className="label-sm border border-outline/30 px-2 py-1 rounded-sm">
+                            <span className="label-sm border border-secondary/30 text-secondary px-2 py-1 rounded-sm">
                                 TRK {String(currentTrackIndex + 1).padStart(2, '0')}
                             </span>
                         </div>
-                        <p className="body-md text-primary font-medium tracking-wide mb-8">{currentTrack.artist.toUpperCase()}</p>
+                        <p className="body-md text-secondary font-medium tracking-wide mb-8">{currentTrack.artist.toUpperCase()}</p>
                     </div>
                     
                     <p className="body-md text-on-surface-variant leading-relaxed max-w-2xl border-l border-outline/30 pl-6 italic">
@@ -195,7 +195,7 @@ export default function MusicPlayer() {
                         />
                         <div className="absolute inset-y-0 left-0 right-0 bg-outline/10 rounded-none"></div>
                         <div 
-                            className="absolute inset-y-0 left-0 bg-primary rounded-none shadow-[0_0_10px_rgba(178,197,255,0.4)]" 
+                            className="absolute inset-y-0 left-0 bg-secondary rounded-none shadow-[0_0_10px_rgba(255,183,134,0.4)]" 
                             style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
                         ></div>
                     </div>
@@ -224,6 +224,13 @@ export default function MusicPlayer() {
                             style={{ width: `${volume * 100}%` }}
                         ></div>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    );
+}
+              </div>
                 </div>
 
             </div>

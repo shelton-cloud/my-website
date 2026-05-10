@@ -63,7 +63,7 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4">
                   <Link 
                     href="/resume" 
-                    className="px-10 py-5 bg-on-surface text-surface font-display font-bold rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300 uppercase tracking-wider text-sm"
+                    className="px-10 py-5 bg-secondary text-on-secondary font-display font-bold rounded-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300 uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(255,183,134,0.2)]"
                   >
                     Resume
                   </Link>

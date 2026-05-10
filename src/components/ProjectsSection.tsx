@@ -18,7 +18,7 @@ export function ProjectsSection() {
                         <article 
                             className="hardware-card hardware-hover group"
                         >
-                            <h3 className="headline-md mb-4 group-hover:text-primary transition-colors">
+                            <h3 className="headline-md mb-4 group-hover:text-secondary transition-colors">
                                 {project.title}
                             </h3>
                             <p className="body-md text-on-surface-variant leading-relaxed">
