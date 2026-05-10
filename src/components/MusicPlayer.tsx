@@ -152,7 +152,7 @@ export default function MusicPlayer() {
 
                     <button
                         onClick={handlePlayPause}
-                        className="w-16 h-16 flex items-center justify-center rounded-sm bg-on-surface text-surface hover:bg-primary transition-all focus:outline-none"
+                        className="w-16 h-16 flex items-center justify-center rounded-sm bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all focus:outline-none shadow-[0_0_15px_rgba(255,183,134,0.3)]"
                         aria-label={isPlaying ? "Pause" : "Play"}
                     >
                         {isPlaying ? (
@@ -224,13 +224,6 @@ export default function MusicPlayer() {
                             style={{ width: `${volume * 100}%` }}
                         ></div>
                     </div>
-                </div>
-
-            </div>
-        </div>
-    );
-}
-              </div>
                 </div>
 
             </div>
