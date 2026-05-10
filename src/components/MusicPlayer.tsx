@@ -9,21 +9,21 @@ const tracks = [
         src: "/goodeco.mp3",
         artist: "Life as Lions",
         description: "Driving guitars and powerful vocals define this high-energy rock track. Recorded in a garage studio in 2012, it captures the raw essence of our early sound.",
-        image: "/bryan-photo.jpg"
+        image: "/album-goodeco.png"
     },
     {
         title: "Rock Shock and Load",
         src: "/rockshockload.mp3",
         artist: "Thee Armada",
         description: "An experimental fusion of funk rhythms and heavy distortion. This track was born from a late-night jam session that accidentally turned into a 10-minute epic.",
-        image: "/bryan-photo.jpg"
+        image: "/album-rockshock.png"
     },
     {
         title: "Three Shades of Me",
         src: "/threeshades.mp3",
         artist: "Ignite the Morning",
         description: "Allows listeners to explore different facets of my musical journey. A melodic progression that builds into a complex, layered crescendo.",
-        image: "/bryan-photo.jpg"
+        image: "/album-threeshades.png"
     }
 ];
 
@@ -96,30 +96,80 @@ export default function MusicPlayer() {
     const currentTrack = tracks[currentTrackIndex];
 
     return (
-        <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col md:flex-row">
-            {/* Left Side: Image & Info */}
-            <div className="md:w-1/2 p-6 md:p-8 bg-gray-50 flex flex-col items-center justify-center text-center">
-                <div className="relative w-48 h-48 md:w-64 md:h-64 mb-6 shadow-lg rounded-xl overflow-hidden">
+        <div className="w-full bg-surface-container-lowest border border-outline/20 rounded-sm flex flex-col font-sans overflow-hidden">
+            {/* Top Bar - Track Info & Minimal Art */}
+            <div className="flex flex-col md:flex-row items-stretch border-b border-outline/20">
+                {/* Art */}
+                <div className="w-full md:w-56 h-56 md:h-auto border-b md:border-b-0 md:border-r border-outline/20 relative flex-shrink-0 bg-surface-container">
                     <Image
                         src={currentTrack.image}
                         alt={currentTrack.title}
                         fill
-                        className="object-cover transition-transform duration-700 hover:scale-110"
+                        className="object-cover grayscale opacity-70 mix-blend-luminosity hover:opacity-100 transition-opacity duration-700"
                     />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-1">{currentTrack.title}</h3>
-                <p className="text-[var(--color-itav-start)] font-medium text-lg mb-4">{currentTrack.artist}</p>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 w-full">
-                    <p className="text-gray-600 text-sm leading-relaxed italic">
-                        "{currentTrack.description}"
+                
+                {/* Info */}
+                <div className="flex-grow p-8 flex flex-col justify-between">
+                    <div>
+                        <div className="flex justify-between items-start mb-2">
+                            <div className="flex items-center gap-4">
+                                <h3 className="headline-md text-on-surface uppercase tracking-tight">{currentTrack.title}</h3>
+                                {isPlaying && (
+                                    <div className="flex items-end gap-0.5 h-6 pb-1">
+                                        <div className="visualizer-bar" style={{ animationDelay: '0s' }}></div>
+                                        <div className="visualizer-bar" style={{ animationDelay: '0.2s' }}></div>
+                                        <div className="visualizer-bar" style={{ animationDelay: '0.4s' }}></div>
+                                        <div className="visualizer-bar" style={{ animationDelay: '0.1s' }}></div>
+                                    </div>
+                                )}
+                            </div>
+                            <span className="label-sm border border-outline/30 px-2 py-1 rounded-sm">
+                                TRK {String(currentTrackIndex + 1).padStart(2, '0')}
+                            </span>
+                        </div>
+                        <p className="body-md text-primary font-medium tracking-wide mb-8">{currentTrack.artist.toUpperCase()}</p>
+                    </div>
+                    
+                    <p className="body-md text-on-surface-variant leading-relaxed max-w-2xl border-l border-outline/30 pl-6 italic">
+                        &quot;{currentTrack.description}&quot;
                     </p>
                 </div>
             </div>
 
-            {/* Right Side: Controls */}
-            <div className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center relative">
-                {/* Decorative background element */}
-                <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-[var(--color-itav-end)] opacity-5 blur-3xl"></div>
+            {/* Bottom Bar - Controls & Scrubber */}
+            <div className="flex flex-col md:flex-row items-center bg-surface-container-low px-8 py-6 md:py-0 md:h-24 gap-8">
+                
+                {/* Playback Controls */}
+                <div className="flex items-center gap-4 flex-shrink-0">
+                    <button
+                        onClick={handlePrev}
+                        className="w-12 h-12 flex items-center justify-center rounded-sm border border-outline/30 text-on-surface hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all focus:outline-none"
+                        aria-label="Previous"
+                    >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" /></svg>
+                    </button>
+
+                    <button
+                        onClick={handlePlayPause}
+                        className="w-16 h-16 flex items-center justify-center rounded-sm bg-on-surface text-surface hover:bg-primary transition-all focus:outline-none"
+                        aria-label={isPlaying ? "Pause" : "Play"}
+                    >
+                        {isPlaying ? (
+                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>
+                        ) : (
+                            <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        )}
+                    </button>
+
+                    <button
+                        onClick={handleNext}
+                        className="w-12 h-12 flex items-center justify-center rounded-sm border border-outline/30 text-on-surface hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all focus:outline-none"
+                        aria-label="Next"
+                    >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" /></svg>
+                    </button>
+                </div>
 
                 <audio
                     ref={audioRef}
@@ -129,76 +179,53 @@ export default function MusicPlayer() {
                     onEnded={handleNext}
                 />
 
-                {/* Progress Bar */}
-                <div className="mb-8 relative z-10">
-                    <div className="flex justify-between text-xs font-medium text-gray-500 mb-2">
-                        <span>{formatTime(currentTime)}</span>
-                        <span>{formatTime(duration)}</span>
+                {/* Scrubber */}
+                <div className="flex-grow w-full flex items-center gap-6">
+                    <span className="text-xs font-mono tabular-nums text-outline-variant tracking-widest">{formatTime(currentTime)}</span>
+                    
+                    <div className="relative h-1 flex-grow group">
+                        <input
+                            type="range"
+                            min="0"
+                            max={duration || 0}
+                            value={currentTime}
+                            onChange={handleSeek}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            aria-label="Seek track"
+                        />
+                        <div className="absolute inset-y-0 left-0 right-0 bg-outline/10 rounded-none"></div>
+                        <div 
+                            className="absolute inset-y-0 left-0 bg-primary rounded-none shadow-[0_0_10px_rgba(178,197,255,0.4)]" 
+                            style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+                        ></div>
                     </div>
-                    <input
-                        type="range"
-                        min="0"
-                        max={duration || 0}
-                        value={currentTime}
-                        onChange={handleSeek}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-itav-mid)] hover:accent-[var(--color-itav-start)] transition-colors"
-                    />
-                </div>
-
-                {/* Controls */}
-                <div className="flex justify-center items-center space-x-8 mb-8 relative z-10">
-                    <button
-                        onClick={handlePrev}
-                        className="text-gray-400 hover:text-[var(--color-itav-start)] transition-colors transform hover:scale-110 focus:outline-none"
-                        aria-label="Previous Track"
-                    >
-                        <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-                        </svg>
-                    </button>
-
-                    <button
-                        onClick={handlePlayPause}
-                        className="w-20 h-20 flex items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-itav-start)] to-[var(--color-itav-mid)] text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 focus:outline-none ring-4 ring-white"
-                        aria-label={isPlaying ? "Pause" : "Play"}
-                    >
-                        {isPlaying ? (
-                            <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                            </svg>
-                        ) : (
-                            <svg className="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        )}
-                    </button>
-
-                    <button
-                        onClick={handleNext}
-                        className="text-gray-400 hover:text-[var(--color-itav-start)] transition-colors transform hover:scale-110 focus:outline-none"
-                        aria-label="Next Track"
-                    >
-                        <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
-                        </svg>
-                    </button>
+                    
+                    <span className="text-xs font-mono tabular-nums text-outline-variant tracking-widest">{formatTime(duration)}</span>
                 </div>
 
                 {/* Volume */}
-                <div className="flex items-center space-x-4 px-4 py-3 bg-gray-50 rounded-xl relative z-10">
-                    <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                <div className="flex items-center gap-4 flex-shrink-0 w-40 hidden lg:flex">
+                    <svg className="w-4 h-4 text-outline-variant" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
                     </svg>
-                    <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={volume}
-                        onChange={handleVolumeChange}
-                        className="w-full h-1 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-gray-500"
-                    />
+                    <div className="relative h-0.5 flex-grow group">
+                        <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value={volume}
+                            onChange={handleVolumeChange}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                        />
+                        <div className="absolute inset-y-0 left-0 right-0 bg-outline/10 rounded-none"></div>
+                        <div 
+                            className="absolute inset-y-0 left-0 bg-outline-variant group-hover:bg-primary transition-colors rounded-none" 
+                            style={{ width: `${volume * 100}%` }}
+                        ></div>
+                    </div>
                 </div>
+
             </div>
         </div>
     );
