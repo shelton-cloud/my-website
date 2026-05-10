@@ -3,16 +3,22 @@ import { profile } from '@/data/profile';
 
 export function EducationSection() {
     return (
-        <section id="education" className="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-mt-24">
-            <h2 className="text-3xl font-bold text-gradient-itav mb-6">Education & Certifications</h2>
+        <section id="education" className="mb-20 scroll-mt-24">
+            <div className="flex items-center gap-6 mb-10">
+                <h2 className="headline-lg uppercase tracking-tighter">Education & Certs</h2>
+                <div className="flex-grow h-px bg-outline/10"></div>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Certifications Column */}
-                <div>
-                    <h3 className="text-xl font-semibold mb-4 text-itav-start">Certifications</h3>
-                    <ul className="space-y-4">
+                <div className="space-y-6">
+                    <h3 className="label-sm text-outline-variant flex items-center gap-3 tracking-widest font-bold">
+                         <div className="w-1 h-3 bg-primary"></div>
+                         Certifications
+                    </h3>
+                    <ul className="space-y-3">
                         {profile.certifications.map((cert: string, index: number) => (
-                            <li key={index} className="bg-gray-50 p-3 rounded-md border-l-4 border-itav-start shadow-sm">
+                            <li key={index} className="bg-surface-container-low border border-outline/15 p-4 rounded-sm body-md text-on-surface hover:border-primary/40 transition-colors">
                                 {cert}
                             </li>
                         ))}
@@ -20,13 +26,18 @@ export function EducationSection() {
                 </div>
 
                 {/* Education Column */}
-                <div>
-                    <h3 className="text-xl font-semibold mb-4 text-itav-end">Education</h3>
-                    <ul className="space-y-4">
-                        {profile.education.map((edu: any, index: number) => (
-                            <li key={index} className="flex flex-col">
-                                <span className="font-bold text-lg">{edu.school}</span>
-                                <span className="text-gray-600 italic">{edu.period}</span>
+                <div className="space-y-6">
+                    <h3 className="label-sm text-outline-variant flex items-center gap-3 tracking-widest font-bold">
+                         <div className="w-1 h-3 bg-secondary"></div>
+                         Education
+                    </h3>
+                    <ul className="space-y-3">
+                        {profile.education.map((edu: { school: string; period: string; degree?: string }, index: number) => (
+                            <li key={index} className="bg-surface-container-low border border-outline/15 p-6 rounded-sm group">
+                                <span className="headline-md block mb-2 group-hover:text-secondary transition-colors">
+                                    {edu.school}
+                                </span>
+                                <span className="label-sm tracking-widest block">{edu.period}</span>
                             </li>
                         ))}
                     </ul>
