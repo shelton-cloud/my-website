@@ -4,11 +4,11 @@ import { FadeIn } from './FadeIn';
 
 export function ProjectsSection() {
     return (
-        <section id="projects" className="mb-20 scroll-mt-24">
+        <section id="projects" className="scroll-mt-24">
             <FadeIn>
                 <div className="flex items-center gap-6 mb-10">
                     <h2 className="headline-lg uppercase tracking-tighter">Technical Projects</h2>
-                    <div className="flex-grow h-px bg-outline/10"></div>
+                    <div className="flex-grow h-px bg-on-surface/5"></div>
                 </div>
             </FadeIn>
 
@@ -16,9 +16,13 @@ export function ProjectsSection() {
                 {profile.projects.map((project, index) => (
                     <FadeIn key={index} delay={index * 0.1}>
                         <article 
-                            className="hardware-card hardware-hover group"
+                            className="glass-level-1 p-8 rounded-DEFAULT hardware-hover group hover:border-primary/30 transition-all duration-500"
                         >
-                            <h3 className="headline-md mb-4 group-hover:text-secondary transition-colors">
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="w-8 h-px bg-secondary/50 group-hover:w-12 transition-all duration-500"></div>
+                                <span className="label-sm text-outline-variant tabular-nums">0{index + 1}</span>
+                            </div>
+                            <h3 className="headline-md mb-4 group-hover:text-primary transition-colors duration-300">
                                 {project.title}
                             </h3>
                             <p className="body-md text-on-surface-variant leading-relaxed">

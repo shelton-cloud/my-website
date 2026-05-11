@@ -53,23 +53,45 @@
   --spacing-container-max: 1440px;
   --spacing-gutter: 32px;
 
-  /* Radii (Hardware Style - Refined) */
-  --radius-sm: 2px;
-  --radius-DEFAULT: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
+  /* Radii (Hardware Style - Refined to DESIGN.md) */
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
 @layer components {
   /* Layout Utilities */
   .container-max {
-    @apply w-full max-w-[1440px] mx-auto px-6 md:px-16 lg:px-24;
+    @apply w-full max-w-[1280px] mx-auto px-6 md:px-16 lg:px-24;
   }
 
+  /* Glassmorphism Levels (from DESIGN.md) */
+  .glass-level-1 {
+    @apply bg-surface-container-low/40 border border-on-surface/10 backdrop-blur-md;
+  }
+
+  .glass-level-2 {
+    @apply bg-surface-container-low/80 border border-on-surface/10 backdrop-blur-xl shadow-2xl;
+  }
+
+  .glass-level-3 {
+    @apply bg-surface-container-low/90 border border-on-surface/15 backdrop-blur-2xl shadow-2xl;
+  }
+  
   /* Hardware Style Panels */
-  .glass-panel {
-    @apply bg-surface-container-low border border-outline/20 shadow-sm transition-all duration-500;
+  .hardware-card {
+    @apply bg-surface-container-low/50 border border-on-surface/5 p-8 rounded-DEFAULT transition-all duration-300 hover:border-primary/40 hover:bg-surface-container/60 hover:shadow-[0_0_30px_rgba(66,112,216,0.1)];
+  }
+
+  .outer-glow-indigo {
+    @apply shadow-[0_0_30px_rgba(66,112,216,0.15)];
+  }
+
+  .outer-glow-orange {
+    @apply shadow-[0_0_30px_rgba(175,87,0,0.15)];
   }
   
   .hardware-hover {
