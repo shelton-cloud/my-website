@@ -23,6 +23,7 @@ export default function Home() {
                       src="/bryan-photo.jpg"
                       alt={profile.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, 440px"
                       className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                       priority
                     />
