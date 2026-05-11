@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`} data-scroll-behavior="smooth">
       <body className="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">

@@ -115,6 +115,7 @@ export default function MusicPlayer() {
                                 src={currentTrack.image}
                                 alt={currentTrack.title}
                                 fill
+                                sizes="(max-width: 768px) 100vw, 256px"
                                 className="object-cover grayscale opacity-40 mix-blend-luminosity hover:opacity-100 transition-opacity duration-1000"
                             />
                         </motion.div>
