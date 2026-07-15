@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { BackgroundEffects } from "@/components/BackgroundEffects";
+import { MixerConsole } from "@/components/MixerConsole";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -62,6 +64,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable}`} data-scroll-behavior="smooth">
       <body className="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
+        <BackgroundEffects />
+        <MixerConsole />
         <Header />
         <main className="flex-grow">
           {children}

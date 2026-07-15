@@ -1,9 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ProjectsSection } from "@/components/ProjectsSection";
-import { VibeCodingSection } from "@/components/VibeCodingSection";
 import { PersonalSection } from "@/components/PersonalSection";
-import MusicPlayerWrapper from '@/components/MusicPlayerWrapper';
 import { FadeIn } from '@/components/FadeIn';
 
 export const metadata: Metadata = {
@@ -25,19 +23,6 @@ export default function ProjectsPage() {
                     
                     <div className="space-y-32">
                         <ProjectsSection />
-
-                        <VibeCodingSection />
-
-                        <div className="scroll-mt-24">
-                            <FadeIn>
-                                <div className="flex items-center gap-6 mb-10">
-                                    <h2 className="headline-lg uppercase tracking-tighter">Music Production</h2>
-                                    <div className="flex-grow h-px bg-on-surface/5"></div>
-                                </div>
-                            </FadeIn>
-                            <MusicPlayerWrapper />
-                        </div>
-
                         <PersonalSection />
                     </div>
                 </div>

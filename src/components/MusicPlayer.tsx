@@ -30,6 +30,12 @@ const tracks = [
 
 export default function MusicPlayer() {
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const audioContextRef = useRef<AudioContext | null>(null);
+    const analyserRef = useRef<AnalyserNode | null>(null);
+    const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+    const animationFrameIdRef = useRef<number | null>(null);
+
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
@@ -42,13 +48,177 @@ export default function MusicPlayer() {
         }
     }, [volume]);
 
+    const startVisualizer = () => {
+        if (animationFrameIdRef.current) {
+            cancelAnimationFrame(animationFrameIdRef.current);
+        }
+        
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        
+        const analyser = analyserRef.current;
+        if (!analyser) return;
+        
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        
+        const render = () => {
+            if (!canvasRef.current || !analyserRef.current) return;
+            
+            const currentCanvas = canvasRef.current;
+            const currentCtx = currentCanvas.getContext('2d');
+            if (!currentCtx) return;
+
+            const rect = currentCanvas.getBoundingClientRect();
+            if (currentCanvas.width !== rect.width || currentCanvas.height !== rect.height) {
+                currentCanvas.width = rect.width;
+                currentCanvas.height = rect.height;
+            }
+            
+            const width = currentCanvas.width;
+            const height = currentCanvas.height;
+            
+            analyserRef.current.getByteTimeDomainData(dataArray);
+            
+            // Clear canvas with trail
+            currentCtx.fillStyle = 'rgba(12, 19, 34, 0.18)'; 
+            currentCtx.fillRect(0, 0, width, height);
+            
+            // Draw grid lines
+            currentCtx.strokeStyle = 'rgba(220, 226, 247, 0.05)';
+            currentCtx.lineWidth = 1;
+            
+            currentCtx.beginPath();
+            currentCtx.moveTo(0, height / 2);
+            currentCtx.lineTo(width, height / 2);
+            currentCtx.stroke();
+            
+            const divisions = 4;
+            for (let i = 1; i < divisions; i++) {
+                currentCtx.beginPath();
+                currentCtx.moveTo((width / divisions) * i, 0);
+                currentCtx.lineTo((width / divisions) * i, height);
+                currentCtx.stroke();
+            }
+            
+            // Draw oscilloscope wave
+            currentCtx.lineWidth = 2;
+            
+            const gradient = currentCtx.createLinearGradient(0, 0, width, 0);
+            gradient.addColorStop(0, '#4270d8'); 
+            gradient.addColorStop(0.5, '#dfb7ff'); 
+            gradient.addColorStop(1, '#ffb786'); 
+            
+            currentCtx.strokeStyle = gradient;
+            currentCtx.shadowBlur = 6;
+            currentCtx.shadowColor = '#4270d8';
+            
+            currentCtx.beginPath();
+            const sliceWidth = width / bufferLength;
+            let x = 0;
+            
+            for (let i = 0; i < bufferLength; i++) {
+                const v = dataArray[i] / 128.0;
+                const y = (v * height) / 2;
+                
+                if (i === 0) {
+                    currentCtx.moveTo(x, y);
+                } else {
+                    currentCtx.lineTo(x, y);
+                }
+                
+                x += sliceWidth;
+            }
+            
+            currentCtx.lineTo(width, height / 2);
+            currentCtx.stroke();
+            currentCtx.shadowBlur = 0; 
+            
+            // Technical metadata readout
+            currentCtx.fillStyle = 'rgba(160, 166, 188, 0.35)';
+            currentCtx.font = '9px monospace';
+            currentCtx.fillText('OSCILLOSCOPE FEED', 12, 22);
+            
+            let sum = 0;
+            for (let i = 0; i < bufferLength; i++) {
+                const val = (dataArray[i] - 128) / 128;
+                sum += val * val;
+            }
+            const rms = Math.sqrt(sum / bufferLength);
+            const db = 20 * Math.log10(rms + 0.0001);
+            const vuPercentage = Math.max(0, Math.min(100, ((db + 40) / 40) * 100));
+            currentCtx.fillText(`RMS: ${db.toFixed(1)} dB`, 12, height - 14);
+            
+            currentCtx.fillStyle = 'rgba(160, 166, 188, 0.08)';
+            currentCtx.fillRect(width - 64, 14, 50, 5);
+            currentCtx.fillStyle = vuPercentage > 82 ? '#ffb4ab' : '#b2c5ff';
+            currentCtx.fillRect(width - 64, 14, (vuPercentage / 100) * 50, 5);
+            
+            animationFrameIdRef.current = requestAnimationFrame(render);
+        };
+        
+        render();
+    };
+
+    const stopVisualizer = () => {
+        if (animationFrameIdRef.current) {
+            cancelAnimationFrame(animationFrameIdRef.current);
+            animationFrameIdRef.current = null;
+        }
+    };
+
     useEffect(() => {
-        if (isPlaying) {
-            audioRef.current?.play().catch(e => console.error("Play error:", e));
+        if (isPlaying && audioRef.current) {
+            if (!audioContextRef.current) {
+                try {
+                    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+                    const ctx = new AudioContextClass();
+                    const analyser = ctx.createAnalyser();
+                    analyser.fftSize = 256;
+                    
+                    const source = ctx.createMediaElementSource(audioRef.current);
+                    source.connect(analyser);
+                    analyser.connect(ctx.destination);
+                    
+                    audioContextRef.current = ctx;
+                    analyserRef.current = analyser;
+                    sourceRef.current = source;
+                } catch (err) {
+                    console.error("Failed to init Web Audio API:", err);
+                }
+            }
+            
+            if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+                audioContextRef.current.resume();
+            }
+            
+            audioRef.current.play()
+                .then(() => {
+                    startVisualizer();
+                })
+                .catch(e => {
+                    console.error("Play error:", e);
+                    setIsPlaying(false);
+                });
         } else {
             audioRef.current?.pause();
+            stopVisualizer();
         }
+        
+        return () => {
+            stopVisualizer();
+        };
     }, [isPlaying, currentTrackIndex]);
+
+    useEffect(() => {
+        return () => {
+            if (animationFrameIdRef.current) {
+                cancelAnimationFrame(animationFrameIdRef.current);
+            }
+        };
+    }, []);
 
     const handlePlayPause = () => {
         setIsPlaying(!isPlaying);
@@ -121,6 +291,10 @@ export default function MusicPlayer() {
                         </motion.div>
                     </AnimatePresence>
                     <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+                    <canvas 
+                        ref={canvasRef} 
+                        className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-10"
+                    />
                 </div>
                 
                 {/* Info */}
