@@ -29,7 +29,9 @@ export function BackgroundEffects() {
             </div>
 
             {/* CRT Monitor Overlay */}
-            <div className="crt-overlay crt-flicker" />
+            <div className="crt-overlay">
+                <div className="crt-screen crt-flicker" />
+            </div>
         </>
     );
 }
