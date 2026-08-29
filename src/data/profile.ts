@@ -7,8 +7,8 @@ export const profile = {
         location: "Los Angeles, CA 90064"
     },
     bio: [
-        "I'm originally from Houston, TX and moved to Los Angeles to pursue music—playing guitar, bass, and drums in touring bands across the country. While the rockstar life was a thrill, I found my long-term rhythm at Riot Games, where I've spent the last 12+ years blending my technical skills with my passion for creating amazing experiences.",
-        "Today, I'm a Lead IT/AV professional expert in global infrastructure and broadcast engineering. I love solving complex technical puzzles, enabling global teams to collaborate seamlessly, and building systems that just work."
+        "Broadcast and AV systems engineer with 12+ years at Riot Games — Tricaster/NDI live production, all-NVX low-latency design, and Crestron control programming across a global fleet of ~900 spaces and 2,000+ endpoints. A modern AV engineer who builds the systems, not just operates them: I back live production and room operations with software I write myself (Python, Go, TypeScript, Crestron SIMPL# Pro), from agent-driven diagnostics to real-time telemetry dashboards.",
+        "I'm originally from Houston, TX and moved to Los Angeles to pursue music—playing guitar, bass, and drums in touring bands across the country. While the rockstar life was a thrill, I found my long-term rhythm at Riot Games, where I've spent the last 12+ years blending my technical skills with my passion for creating amazing experiences."
     ],
     personal: {
         journey: "From Houston stages to LA control rooms, my journey has been about finding the perfect mix of creativity and technology.",
@@ -28,8 +28,10 @@ export const profile = {
             role: "AV Engineer III – Tech Lead",
             period: "2026 – Present",
             responsibilities: [
-                "Global Efficiency Strategy: Architecting a global technical roadmap focused on full room sweep automation and asset management for 175+ rooms; forecasted to save 312 man-hours annually.",
-                "Roadmap Leadership: Steering the global team toward hardware parity across all regions to ensure a seamless, standardized user experience."
+                "AV Systems Engineering: Maintain the AV Systems monorepo spanning Crestron SIMPL# Pro control, BPMN workflows, React/Node dashboards, and Python utilities for room automation.",
+                "Room Fleet Automation: Shipped a Conference Room Morning Auto-Sweep across 196 rooms — headless agents verify connectivity, USB, mic, speaker, and camera each morning and post to a live fleet dashboard with baseline-drift detection and Slack alerting.",
+                "Broadcast-Grade Tooling: Built AVA, a Google ADK multi-agent orchestrator for AV ops and broadcast engineering, plus a Soundtrack Monitor for real-time AV player telemetry.",
+                "Roadmap: Architecting global room-sweep automation and asset management across the ~900-space, 2,000+ endpoint fleet; forecasted to save 312 man-hours annually."
             ],
             current: true
         },
@@ -38,11 +40,10 @@ export const profile = {
             role: "AV Engineer II",
             period: "2024 – 2025",
             responsibilities: [
-                "Fleet Modernization: Spearheaded the transition from SCCM to Microsoft Intune for 150+ HP G9 mini devices, enabling zero-touch deployment for a global workforce.",
-                "Low-Latency Engineering: Designed an all-NVX system for the Global Game Capture lab to provide ultra-low latency feed switching between diverse gaming platforms and screens.",
-                "Event Tech Lead (A26 Seoul): Managed on-site technical infrastructure for 50+ streamers during a high-profile VCT marketing event in South Korea, securing 100% uptime for unreleased agent gameplay content.",
-                "Infrastructure Expansion: Directed the opening of \"Y-Bldg\" and \"H-Bldg\" offices, overseeing the deployment of 148+ Google Rooms and digital signage across 10 floors.",
-                "Talent Development: Authored comprehensive job descriptions and career paths for the AV department while running an international technician training exchange program."
+                "Low-Latency Engineering: Designed an all-NVX system for the Global Game Capture lab for ultra-low-latency feed switching across diverse gaming platforms and screens.",
+                "Event Tech Lead (A26 Seoul): Managed on-site infrastructure for 50+ streamers during a high-profile VCT marketing event in South Korea, securing 100% uptime for unreleased agent gameplay content.",
+                "Infrastructure Expansion: Directed the opening of \"Y-Bldg\" and \"H-Bldg\" — 148+ Google Rooms and digital signage across 10 floors.",
+                "Fleet Modernization: Spearheaded the SCCM → Microsoft Intune migration for 150+ devices for zero-touch deployment."
             ],
             current: false
         },
@@ -51,20 +52,20 @@ export const profile = {
             role: "AV Engineer I",
             period: "2022 – 2023",
             responsibilities: [
-                "Broadcast Integration: Engineered and launched the Phase 1 Broadcast Studio and a T180 screening/mixing room to support high-fidelity media production.",
-                "Global Conversion: Spearheaded a global conference room transformation by spearheading Google Meet hardware standards across 600+ rooms.",
-                "Enterprise Mobility: Facilitated a 200-unit BRIX to NUC hardware upgrade and supported the infrastructure for the Seattle1 and STL office openings."
+                "Broadcast Integration: Engineered and launched the Phase 1 Broadcast Studio and a T180 screening/mixing room for high-fidelity media production.",
+                "Global Conversion: Standardized Google Meet hardware across 600+ conference rooms.",
+                "Office Expansion: Facilitated a 200-unit BRIX→NUC upgrade and supported Seattle1 and STL office openings."
             ],
             current: false
         },
         {
             company: "Riot Games",
             role: "Media Systems Support Analyst",
-            period: "2015 – 2021",
+            period: "2015 – 20．1",
             responsibilities: [
-                "Incident Reduction: Achieved a 65% drop in ticket volume at the Colorado Center by taking ownership of the technology build and maintenance standards.",
-                "QA Automation: Developed a custom QA application to execute automated system health checks, reporting status to a live dashboard for proactive maintenance.",
-                "System Reliability: Provided expert support for mobile devices and high-level technical troubleshooting for 1500+ users."
+                "System Reliability: Owned technology build and maintenance standards, driving a 65% drop in ticket volume at the Colorado Center.",
+                "QA Automation: Developed a custom QA application for automated system health checks reporting to a live dashboard.",
+                "Scale: Expert support and troubleshooting for 1,500+ users."
             ],
             current: false
         },
@@ -73,23 +74,26 @@ export const profile = {
             role: "IT Specialist",
             period: "2013 – 2015",
             responsibilities: [
-                "Mac Technical Support: Provided primary technical assistance and hardware/software troubleshooting for Riot Games' headquarters."
+                "Primary Mac technical support for Riot Games HQ."
             ],
             current: false
         }
     ],
     skills: {
         "AV & Broadcast Engineering": [
-            "Tricaster", "NDI", "Midas M32/Yamaha Soundboards", "NVX Low-Latency Systems", "BIAMP", "Crestron", "Streaming (Twitch/YouTube)"
+            "Tricaster", "NDI", "Midas M32 / Yamaha soundboards", "NVX low-latency systems", "BIAMP", "Crestron (SIMPL# Pro)", "Streaming (Twitch/YouTube)"
         ],
-        "Systems & Deployment": [
-            "Microsoft Intune (Migration Lead)", "SCCM", "JAMF (CCT/CCA)", "Google Admin", "PowerShell", "Deep Freeze", "F.O.G"
+        "Control & Integration": [
+            "Crestron programming", "Google Meet/Rooms", "Logitech", "XiO", "Robin", "Symphony", "MagicInfo digital signage"
         ],
-        "Infrastructure": [
-            "Mac OS", "Microsoft Windows", "Linux", "Networking", "Active Directory", "ServiceNow", "MagicInfo"
+        "Engineering": [
+            "Python", "Go", "TypeScript/JavaScript", "C#/.NET", "PowerShell", "React", "Node.js", "Streamlit", "Flask", "Docker"
         ],
-        "Strategic Leadership": [
-            "Technical Roadmapping", "Career Path Architecture", "Global Hardware Parity", "Mentorship"
+        "AI & Agents": [
+            "Google ADK multi-agent orchestration", "Copilot CLI", "RoomOps/Diagnostics agents", "MCP tooling"
+        ],
+        "Systems": [
+            "Microsoft Intune", "ServiceNow", "Jira", "networking"
         ]
     },
     education: [
