@@ -75,14 +75,12 @@ This project is Docker-ready for consistent deployment across environments.
 docker-compose up -d --build
 ```
 
-The application will be accessible at `http://localhost:3000`.
-
 ### Stopping the service
 
 ```bash
 docker-compose down
 ```
 
-## 📄 License
+## 📄 Licensing
 
-This project is open source and available under the [MIT License](LICENSE).
+No license file is currently included. Add a license only if you intend to grant one.
