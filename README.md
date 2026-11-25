@@ -1,5 +1,12 @@
 # Bryan Shelton - Personal Portfolio
 
+![Next.js](https://shields.sheltsville.com/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![React](https://shields.sheltsville.com/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Tailwind CSS](https://shields.sheltsville.com/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Vercel](https://shields.sheltsville.com/badge/Vercel-Analytics-000000?style=flat-square&logo=vercel&logoColor=white)
+
+[![Tech Stack](https://skillicons.sheltsville.com/icons?i=nextjs,react,ts,tailwind,vercel,docker)](https://skillicons.sheltsville.com)
+
 A professional personal portfolio website showcasing expertise in IT/AV engineering, broadcast systems, and technical leadership. Built with focus on performance, aesthetics, and a clean user experience.
 
 ## ✨ Features
